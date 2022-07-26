@@ -1,0 +1,45 @@
+﻿@model IEnumerable<Category>
+@{
+    ViewData["Title"] = "Index";
+}
+<div class="container p-3">
+    <div class="row pt-2">
+        <h1 class="col-6">Category</h1>
+        <div class="col-6 text-end">
+            <a class="btn btn-warning" asp-controller="Category" asp-action="Create"> <i class="bi bi-plus-circle"></i> &nbsp; Add New Category</a>
+        </div>
+    </div>
+    <table class="table table-hover" style="width:100%">
+        <thead>
+            <tr>
+                <th>
+                    Category Name
+                </th>
+                <th>
+                    Display Order
+                </th>
+                <th>
+                    Created Date
+                </th>
+                <th></th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var category in Model)
+            {
+                <tr class="table-active" style="vertical-align:middle">
+                    <td width="40%">@category.Name</td>
+                    <td width="20%">@category.DisplayOrder</td>
+                    <td width="25%">@category.CreatedDateTime</td>
+                    <td>
+                        <div class="btn-group">
+                            <a class="btn btn-warning btn-sm" asp-controller="Category" asp-action="Edit" asp-route-id=@category.Id><i class="bi bi-pencil-square"></i>Edit</a>
+                            <a class="btn btn-danger btn-sm" asp-controller="Category" asp-action="Delete" asp-route-id=@category.Id><i class="bi bi-trash3"></i>Delete</a>
+                        </div>
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+</div>
+
